@@ -18,13 +18,13 @@ makeButton :: UI -> Planet -> IO (Planet, ButtonPicture)
             let image = case planetPic of
                 Just planet -> scale (1/10) (1/10) planet
                 Nothing -> color red (text "Error")
-            button <- button ui image
+            button <- button ui image --Not sure if this actually works yet
             return (planet, button)
 
 createPlanetButtons :: UI -> [Planet] -> IO [(Planet, Button Picture)]
 createPlanetButtons ui planets = mapM (makeButton ui) planets
 
-createSliders :: UI -> IO (Slider float, Slider float, Slider float)
+createSliders :: UI -> IO (Slider float, Slider float, Slider float) --Not sure if this actually works yet
 createSliders ui = do
     velSlider <- slider ui (0, 10) 5 --FIX: Not sure exactly what these values should be
     altSlider <- slider ui (0, 10) 5 --FIX
