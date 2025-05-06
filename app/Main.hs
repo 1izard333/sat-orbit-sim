@@ -5,6 +5,7 @@ import Graphics.Gloss
 --import Codec.Picture
 import Equations
 import Orbit
+import Display
 
 
 -- planets list ( https://nssdc.gsfc.nasa.gov/planetary/factsheet/planet_table_ratio.html )

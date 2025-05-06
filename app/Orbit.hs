@@ -36,7 +36,7 @@ handlePNG fileName = do
                 Just pic = fromDynamicImage img -- making assumptiong it will just be an img 
 
 
--- need to calculate the rasius of the image then convert it to the planet radius for scaling
+-- need to calculate the radius of the image then convert it to the planet radius for scaling
 scalePlanetImage :: Float -> Planet -> Picture -> Picture 
 scalePlanetImage scaleFactor planet planetImg = scale (1/10) (1/10) planetImg
    -- where 
