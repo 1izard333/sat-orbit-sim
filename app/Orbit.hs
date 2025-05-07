@@ -6,6 +6,7 @@ import Graphics.Gloss.Juicy
 import Codec.Picture
 import Paths_sat_orbit_sim (getDataFileName)
 import System.FilePath ((</>))
+import Brillo (Color)
 
 type Altitude = Float -- in km
 type Velocity = Float -- in km/s
@@ -17,7 +18,8 @@ data Planet =
         planetId :: Int ,  -- corresponds with closeness to sun
         planetMass :: Float , -- in kg
         planetRadius :: Float ,  -- in km
-        planetImage :: FilePath -- file name of png
+        planetImage :: FilePath,
+        planetColor :: Color -- file name of png
     } 
 
 

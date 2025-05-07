@@ -6,36 +6,37 @@ import Graphics.Gloss
 import Equations
 import Orbit
 import Display
+import Brillo (yellow, red, blue, green, violet, cyan, magenta)
 
 
 -- planets list ( https://nssdc.gsfc.nasa.gov/planetary/factsheet/planet_table_ratio.html )
 
 mercury :: Planet
-mercury = MkPlanet 1 0.33010e24 2440.5 "resources/mercury.png"
+mercury = MkPlanet 1 0.33010e24 2440.5 "resources/mercury.png" red
 
 venus :: Planet
-venus = MkPlanet 2 4.8673e24 6051.8 "resources/venus.png"
+venus = MkPlanet 2 4.8673e24 6051.8 "resources/venus.png" yellow
 
 earth :: Planet
-earth = MkPlanet 3 5.9722e24 6378.137 "resources/earth.png"
+earth = MkPlanet 3 5.9722e24 6378.137 "resources/earth.png" blue
 
 mars :: Planet
-mars = MkPlanet 4 0.64169e24 3396.2 "resources/mars.png"
+mars = MkPlanet 4 0.64169e24 3396.2 "resources/mars.png" blue
 
 jupiter :: Planet
-jupiter = MkPlanet 5 1898.13e24 71492 "resources/jupiter.png"
+jupiter = MkPlanet 5 1898.13e24 71492 "resources/jupiter.png" green
 
 saturn :: Planet
-saturn = MkPlanet 6 568.32e24 60268 "resources/saturn.png"
+saturn = MkPlanet 6 568.32e24 60268 "resources/saturn.png" violet
 
 uranus :: Planet
-uranus = MkPlanet 7 86.811e24 25559 "resources/uranus.png"
+uranus = MkPlanet 7 86.811e24 25559 "resources/uranus.png" yellow
 
 neptune :: Planet
-neptune = MkPlanet 8 102.409e24 24764 "resources/neptune.png"
+neptune = MkPlanet 8 102.409e24 24764 "resources/neptune.png" cyan
 
 moon :: Planet
-moon = MkPlanet 0 0.07346e24 1738.1 "resources/moon.png"
+moon = MkPlanet 0 0.07346e24 1738.1 "resources/moon.png" magenta
 
 
 main :: IO ()

@@ -1,14 +1,12 @@
 module Display where
 
-import Brillo.Data.Picture
-import Graphics.Gloss.Juicy
+import Brillo
 import Equations
 import Orbit
 
-createPlanetOptions :: UI -> [Planet] -> IO [Picture]
-createPlanetOptions _ [] = []
-createPlanetOptions ui (p:ps) = do
-    image <- handlePNG (planetImage p)
-    others <- createPlanetOptions ui ps
-    image : others
+createPlanetButton :: Planet -> Picture
+createPlanetButton p = circleSolid
 
+handleEvent :: Event -> [[Int]] -> [[Int]]
+handleEvent event = case Event of 
+    (EventKey (MouseButton LeftButton) _ _ (sx, sy)) -> 
