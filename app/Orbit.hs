@@ -18,8 +18,7 @@ data Planet =
         planetId :: Int ,  -- corresponds with closeness to sun
         planetMass :: Float , -- in kg
         planetRadius :: Float ,  -- in km
-        planetImage :: FilePath,
-        planetColor :: Color -- file name of png
+        planetImage :: FilePath -- file name of png
     } 
 
 
