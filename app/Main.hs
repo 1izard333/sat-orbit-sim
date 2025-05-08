@@ -3,7 +3,7 @@ module Main where
 import Equations
 import Orbit
 import Brillo
-import Display (planetButtons, displayButtons)
+import Display (planetButtons, displayButtons, volumeButtons)
 
 
 -- planets list ( https://nssdc.gsfc.nasa.gov/planetary/factsheet/planet_table_ratio.html )
@@ -37,7 +37,8 @@ moon = MkPlanet 0 0.07346e24 1738.1 "resources/moon.png"
 
 
 main :: IO ()
-main = display (InWindow "Planet Buttons" (800, 600) (100, 100)) black (displayButtons planetButtons)
+main = display (InWindow "Planet Buttons" (800, 600) (100, 100)) black (
+  displayButtons planetButtons volumeButtons)
 
   -- animateOrbit earth 2000 200  0 -- alt == km ; vel == km/s
   --animateOrbit mars 2000 200  0 -- alt == km ; vel == km/s
