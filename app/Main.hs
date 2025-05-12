@@ -1,41 +1,48 @@
 module Main where
 
-import Equations
+import Graphics.Gloss
+import Graphics.Gloss.Interface.IO.Game
 import Orbit
-import Brillo
-import Display (planetButtons, displayButtons, volumeButtons)
 
+-- Adjustable constants
+window :: Display
+window = InWindow "Planet Orbit Simulation" (800, 800) (100, 100)
 
--- planets list ( https://nssdc.gsfc.nasa.gov/planetary/factsheet/planet_table_ratio.html )
+background :: Color
+background = black
 
-mercury :: Planet
-mercury = MkPlanet 1 0.33010e24 2440.5 "resources/mercury.png"
+fps :: Int
+fps = 60
 
-venus :: Planet
-venus = MkPlanet 2 4.8673e24 6051.8 "resources/venus.png"
+scaleFactor :: Float 
+scaleFactor = 1e4
 
-earth :: Planet
-earth = MkPlanet 3 5.9722e24 6378.137 "resources/earth.png"
+ 
 
-mars :: Planet
-mars = MkPlanet 4 0.64169e24 3396.2 "resources/mars.png"
+-- Main simulation loop
+main :: IO ()
+main = do
+  -- preload initial images
+  planetPic <- handlePNG (planetImage earth)
+  satPic <- handlePNG "resources/sat.png"
+  -- set initial start to simulation -> start with earth at 2000 km , 200 km/s, and 0 eccentricity
+  let initModel = initialSimState earth 2000 200 0 planetPic satPic
+  playIO window background fps initModel (return . makeSim scaleFactor) handleEvent (\dt state -> return (updateSimTime dt state))
 
-jupiter :: Planet
-jupiter = MkPlanet 5 1898.13e24 71492 "resources/jupiter.png"
+-- handle user input 
+handleEvent :: Event -> SimState -> IO SimState
+handleEvent (EventKey (Char c) Down _ _) sim@(MkSimState p alt vel e pImage sImage t z)
+  | c `elem` ['0'..'8'] = changePlanet (read [c]) sim
+  | c `elem` ['q', 'a', 'w', 's', 'e', 'd'] = changeParameter c sim
+handleEvent (EventKey (MouseButton WheelUp) Down _ _) (MkSimState p alt vel e pImage sImage t z) = 
+  return (MkSimState p alt vel e pImage sImage t (min 5.0 (z * 1.1)))  -- Zoom in (limit to 5x)
+handleEvent (EventKey (MouseButton WheelDown) Down _ _) (MkSimState p alt vel e pImage sImage t z) =
+  return (MkSimState p alt vel e pImage sImage t (max 0.01 (z * 0.9))) -- Zoom out (limit to 0.2x)
+handleEvent _ m = return m
 
-saturn :: Planet
-saturn = MkPlanet 6 568.32e24 60268 "resources/saturn.png"
+-- previous main runs 
 
-uranus :: Planet
-uranus = MkPlanet 7 86.811e24 25559 "resources/uranus.png"
-
-neptune :: Planet
-neptune = MkPlanet 8 102.409e24 24764 "resources/neptune.png"
-
-moon :: Planet
-moon = MkPlanet 0 0.07346e24 1738.1 "resources/moon.png"
-
-
+{-
 main :: IO ()
 main = display (InWindow "Planet Buttons" (800, 600) (100, 100)) black (
   displayButtons planetButtons volumeButtons)
@@ -59,4 +66,5 @@ main = display (InWindow "Planet Buttons" (800, 600) (100, 100)) black (
                  8 -> neptune
                  0 -> moon
   animateOrbit planet altitude speed
+  -}
   -}

@@ -40,5 +40,12 @@ kmToMeters a = a * 1000
 orbitPosition :: Float -> Float -> Float -> Float -> Position
 orbitPosition a b w t = (x, y)
   where
-    x = a * cos (w * t)
-    y = b * sin (w * t)
+    x = orbitalPosX a w t 
+    y = orbitalPosY b w t 
+
+
+orbitalPosX :: Float -> Float -> Float -> Float 
+orbitalPosX a w t = a * cos (w * t)
+
+orbitalPosY :: Float -> Float -> Float -> Float 
+orbitalPosY b w t = b * sin (w * t)

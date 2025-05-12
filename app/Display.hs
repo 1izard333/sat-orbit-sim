@@ -89,3 +89,4 @@ displayButtons ps vs = pictures (
     map displayVolumeButton vs ++
     map displayVolumeLabel volumeLabels
     )
+
